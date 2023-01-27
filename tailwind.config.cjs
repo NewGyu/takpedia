@@ -4,7 +4,11 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				"bukkomi-blue": "#0573b2"
+				"bukkomi-blue": {
+					light: "#0785cd",
+					DEFAULT: "#0573b2",
+					dark: "#0568a0"
+				}
 			},
 		},
 	},
