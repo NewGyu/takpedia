@@ -8,8 +8,11 @@ module.exports = {
 					light: "#0785cd",
 					DEFAULT: "#0573b2",
 					dark: "#0568a0"
-				}
+				},
 			},
+			listStyleType: {
+				square: "square"
+			}
 		},
 	},
 	plugins: [],
