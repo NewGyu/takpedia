@@ -4,9 +4,9 @@ import PageHeader from "./PageHeader.astro";
 const { title } = Astro.props;
 ---
 
-<main class="mx-auto max-w-7xl py-1 sm:px-6 lg:px-8 flex-grow">
+<main class="max-w-7xl mx-1 mt-2 p-3 bg-white flex-grow shadow">
     <PageHeader title={title} />
-    <article>
+    <article class="pt-4">
         <slot />
     </article>
 </main>
