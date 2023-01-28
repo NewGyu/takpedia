@@ -9,6 +9,7 @@ module.exports = {
 					DEFAULT: "#0573b2",
 					dark: "#0568a0"
 				},
+				"taku-red": "#E9272D"
 			},
 			listStyleType: {
 				square: "square"
