@@ -13,6 +13,9 @@ module.exports = {
 			},
 			listStyleType: {
 				square: "square"
+			},
+			minHeight: {
+				"article": "80vh"
 			}
 		},
 	},
