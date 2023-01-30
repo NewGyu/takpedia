@@ -1,0 +1,19 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import { listAll } from "../../codes/Repository/CharacterRepo";
+
+export async function getStaticPaths() {
+    const x = listAll().map((e) => {
+        return { params: { id: e.id } };
+    });
+    console.log(x);
+    return x;
+    //    return [{ params: { id: "taku" } }, { params: { id: "ma-bou" } }];
+}
+
+const { id } = Astro.params;
+---
+
+<DefaultLayout title="aaa">
+    <h2>id:{id}</h2>
+</DefaultLayout>

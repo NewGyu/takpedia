@@ -1,10 +1,9 @@
-type Identifier = String;
-type MarkDown = String;
-type ImageURL = String;
-type Tag = String;
+export type Identifier = String;
+export type MarkDown = String;
+export type ImageURL = String;
+export type Tag = String;
 
-
-interface Character {
+export interface Character {
     id: Identifier,
     name: String,
     kana: String,
