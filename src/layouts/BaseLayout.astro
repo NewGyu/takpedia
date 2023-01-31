@@ -7,8 +7,10 @@ import MainContent from "../components/MainContent/Index.astro";
 import "../style/global.css";
 export interface Props {
     title: string;
+    ruby?: string;
+    isMarkdown: boolean;
 }
-const { title } = Astro.props;
+const { title, ruby, isMarkdown } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -25,8 +27,16 @@ const { title } = Astro.props;
             <GlobalHeader />
             <div class="flex flex-row">
                 <SideNavi />
-                <MainContent title={title}>
-                    <slot />
+                <MainContent title={title} ruby={ruby}>
+                    {
+                        isMarkdown ? (
+                            <div class="markdown-body">
+                                <slot />
+                            </div>
+                        ) : (
+                            <slot />
+                        )
+                    }
                 </MainContent>
                 <Backbone />
             </div>

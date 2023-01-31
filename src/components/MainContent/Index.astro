@@ -1,11 +1,14 @@
 ---
 import PageHeader from "./PageHeader.astro";
-
-const { title } = Astro.props;
+interface Props {
+    title: string;
+    ruby?: string;
+}
+const { title, ruby } = Astro.props;
 ---
 
 <main class="min-h-article m-2 p-3 bg-white flex-grow shadow">
-    <PageHeader title={title} />
+    <PageHeader title={title} ruby={ruby} />
     <article class="pt-4">
         <slot />
     </article>
