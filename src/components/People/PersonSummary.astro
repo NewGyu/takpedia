@@ -9,6 +9,10 @@ const { person } = Astro.props;
 ---
 
 <dl>
-    <dt><a href={"/people/" + person.id}>{person.name}</a></dt>
-    <dd>なんか説明</dd>
+    <dt>
+        <a href={"/people/" + person.id}>{person.name}</a><ruby
+            >{`(${person.kana})`}</ruby
+        >
+    </dt>
+    <dd>{person.summary}</dd>
 </dl>
