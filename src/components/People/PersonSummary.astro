@@ -9,6 +9,6 @@ const { person } = Astro.props;
 ---
 
 <dl>
-    <dt><a href={person.id}>{person.name}</a></dt>
+    <dt><a href={"/people/" + person.id}>{person.name}</a></dt>
     <dd>なんか説明</dd>
 </dl>
