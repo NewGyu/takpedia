@@ -1,0 +1,11 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import { listAll } from "../../codes/Repository/CharacterRepo";
+import PersonSummary from "../../components/People/PersonSummary.astro";
+
+const people = listAll();
+---
+
+<DefaultLayout title="登場人物一覧">
+    {people.map((p) => <PersonSummary person={p} />)}
+</DefaultLayout>

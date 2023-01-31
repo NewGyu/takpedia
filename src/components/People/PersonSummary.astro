@@ -1,0 +1,14 @@
+---
+import type { Character } from "../../codes/Entities";
+
+export interface Props {
+    person: Character;
+}
+
+const { person } = Astro.props;
+---
+
+<dl>
+    <dt><a href={person.id}>{person.name}</a></dt>
+    <dd>なんか説明</dd>
+</dl>
