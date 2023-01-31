@@ -1,13 +1,13 @@
-export type Identifier = String;
-export type MarkDown = String;
-export type ImageURL = String;
-export type Tag = String;
+export type Identifier = string;
+export type MarkDown = string;
+export type ImageURL = string;
+export type Tag = string;
 
 export interface Character {
     id: Identifier,
-    name: String,
-    kana: String,
-    nick_name?: String,
+    name: string,
+    kana: string,
+    nick_name?: string,
     img?: ImageURL,
     summary: MarkDown,
     description?: MarkDown,
@@ -16,8 +16,8 @@ export interface Character {
 
 interface Team {
     id: Identifier,
-    name: String,
-    kana: String,
+    name: string,
+    kana: string,
     summary: MarkDown,
     description?: MarkDown,
     tags?: Tag[],
@@ -25,9 +25,9 @@ interface Team {
 
 interface Bike {
     id: Identifier,
-    name: String,
-    kana?: String,
-    nick_name?: String,
+    name: string,
+    kana?: string,
+    nick_name?: string,
     summary: MarkDown,
     description?: MarkDown,
     tags?: Tag[],
@@ -35,8 +35,8 @@ interface Bike {
 
 interface Organization {
     id: Identifier,
-    name: String,
-    kana: String,
+    name: string,
+    kana: string,
     summary: MarkDown,
     description?: MarkDown,
     tags?: Tag[],
@@ -45,7 +45,7 @@ interface Organization {
 
 interface FamousQuote {
     id: Identifier,
-    sentence: String,
+    sentence: string,
     description?: MarkDown,
     said_by: Identifier[],
     tags?: Tag[],
@@ -53,8 +53,8 @@ interface FamousQuote {
 
 interface Terminology {
     id: Identifier,
-    word: String,
-    kana: String,
+    word: string,
+    kana: string,
     description?: MarkDown,
     tags?: Tag[],
 }
