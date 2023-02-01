@@ -1,0 +1,18 @@
+---
+import type { Character } from "../../codes/Entities";
+
+export interface Props {
+    person: Character;
+}
+
+const { person } = Astro.props;
+---
+
+<dl>
+    <dt>
+        <a href={"/people/" + person.id}>{person.name}</a><ruby
+            >{`(${person.kana})`}</ruby
+        >
+    </dt>
+    <dd>{person.summary}</dd>
+</dl>

@@ -1,0 +1,22 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import PersonSummary from "../../components/People/PersonSummary.astro";
+import path from "path";
+import type { Character } from "../../codes/Entities";
+const peoplePages = await Astro.glob("./*.mdx");
+const people = peoplePages
+    .map((p) => {
+        return {
+            id: path.basename(p.url || ""),
+            summary: "サマリ",
+            ...p.frontmatter,
+        } as Character;
+    })
+    .sort((a, b) => (a.kana < b.kana ? -1 : 1));
+
+console.log(people);
+---
+
+<DefaultLayout title="登場人物一覧">
+    {people.map((p) => <PersonSummary person={p} />)}
+</DefaultLayout>

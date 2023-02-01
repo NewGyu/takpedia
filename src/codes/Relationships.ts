@@ -1,4 +1,6 @@
-interface BikeOwnedBy {
+import type { Identifier } from "./Entities";
+
+export interface BikeOwnedBy {
     bike_id: Identifier,
     owner_ids: Identifier[],
 }
