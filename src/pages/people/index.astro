@@ -4,13 +4,16 @@ import PersonSummary from "../../components/People/PersonSummary.astro";
 import path from "path";
 import type { Character } from "../../codes/Entities";
 const peoplePages = await Astro.glob("./*.mdx");
-const people = peoplePages.map((p) => {
-    return {
-        id: path.basename(p.url || ""),
-        summary: "サマリ",
-        ...p.frontmatter,
-    } as Character;
-});
+const people = peoplePages
+    .map((p) => {
+        return {
+            id: path.basename(p.url || ""),
+            summary: "サマリ",
+            ...p.frontmatter,
+        } as Character;
+    })
+    .sort((a, b) => (a.kana < b.kana ? -1 : 1));
+
 console.log(people);
 ---
 
