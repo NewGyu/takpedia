@@ -1,50 +1,66 @@
-# Welcome to [Astro](https://astro.build)
+# Takpedia
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+## What's this?
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+このリポジトリは特攻の拓総合サイト[拓ペディア](https://takpedia.pages.dev/)のソースコードを管理するものです。
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+## How to develop and buiold
 
+### Prerequisite
 
-## 🚀 Project Structure
+当サイトは[Astro](https://astro.build)を用いて開発されており、Node.js v16.xが必要です。
 
-Inside of your Astro project, you'll see the following folders and files:
+最も簡単な方法はVSCodeと[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)を利用することです。
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+他のエディタ、Dockerを使いたくない場合にはローカルにNode.jsをインストールしてください。
+
+### Run on your local
+
+```shell
+$ npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Build
+```shell
+$ npm run build
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+上記のコマンドによって`./dist`ディレクトリが生成され、すべての成果物はそのディレクトリ内に生成されます。
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Publish
+当サイトは[CloudFlare Pages](https://www.cloudflare.com/ja-jp/products/pages/)を利用しており、`mainブランチ`の変更を検知して自動的にpublishされます。
 
-## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+## Project Structure
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
+概ね以下のディレクトリ構造になっています。
 
-## 👀 Want to learn more?
+```
+.
+├── public
+├── src
+│   ├── codes           ...Astro依存しない独立したロジック
+│   ├── components
+│   │   ├── Global      ...グローバルヘッダなど
+│   │   ├── Team        ...族関係のページの部品
+│   │   └── People      ...登場人部関係のページの部品
+│   ├── layouts         ...全体レイアウト
+│   ├── pages
+│   │   ├── teams       ...族関係のページ
+│   │   └── people      ...登場人部関係のページ
+│   └── style
+└── test
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### style
+基本的に[tailwind.css](https://tailwindcss.com/)を利用しています。故に各所のclassを大量に付けていくスタイルです。
+
+Markdown部分についてはやってられないので[GitHub由来のMarkdown用CSS](src/style/markdown.css)を拝借しています。
+
+### pages
+多くのページは[MDX](https://docs.astro.build/ja/guides/markdown-content/)（拡張マークダウン）書式を使っています。これはサイトに埋め込む画像に著作権表記をしたいためです。
+
+
+## Contributes
+
+「！？」と思われた方、「ダボがぁ　半チクこいてんじゃねぇゾ！！」と思われた方、是非PullRequestをください！
