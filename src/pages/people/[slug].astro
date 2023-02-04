@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import PeopleLayout from "../../layouts/PeopleLayout.astro";
+
+export async function getStaticPaths() {
+    const people = await getCollection("people");
+    return people.map((p) => ({
+        params: { slug: p.slug },
+        props: { p },
+    }));
+}
+
+const { p } = Astro.props;
+const { Content } = await p.render();
+---
+
+<PeopleLayout name={p.data.name} kana={p.data.kana}>
+    <Content />
+</PeopleLayout>
