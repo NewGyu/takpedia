@@ -1,0 +1,10 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../style/markdown.css";
+
+const t = Astro.props;
+---
+
+<BaseLayout title={t.name} ruby={t.kana} isMarkdown={true}>
+    <slot />
+</BaseLayout>

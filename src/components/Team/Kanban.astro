@@ -1,0 +1,12 @@
+---
+export interface Props {
+    words?: string[];
+}
+
+const words = Astro.props.words || [];
+---
+
+<h3>カンバン</h3>
+<ul class="list-disc">
+    {words.map((k) => <li>{k}</li>)}
+</ul>
