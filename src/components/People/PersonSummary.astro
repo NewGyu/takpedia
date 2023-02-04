@@ -1,8 +1,8 @@
 ---
-import type { Character } from "../../codes/Entities";
+import type { CollectionEntry } from "astro:content";
 
 export interface Props {
-    person: Character;
+    person: CollectionEntry<"people">;
 }
 
 const { person } = Astro.props;
@@ -10,9 +10,9 @@ const { person } = Astro.props;
 
 <dl class="border-2 rounded-md border-solid border-bukkomi-blue-dark p-2 mb-2">
     <dt>
-        <a class="text-lg font-semibold" href={"/people/" + person.id}
-            >{person.name}</a
-        ><ruby class="text-sm">{`(${person.kana})`}</ruby>
+        <a class="text-lg font-semibold" href={"/people/" + person.slug}
+            >{person.data.name}</a
+        ><ruby class="text-sm">{`(${person.data.kana})`}</ruby>
     </dt>
-    <dd class="pl-2 py-1">{person.summary}</dd>
+    <dd class="pl-2 py-1">{person.data.summary}</dd>
 </dl>
