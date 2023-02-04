@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Kanban from "../../components/Team/Kanban.astro";
+import Member from "../../components/Team/Member.astro";
 import TeamsLayout from "../../layouts/TeamsLayout.astro";
 
 export async function getStaticPaths() {
@@ -17,5 +18,6 @@ const { Content } = await team.render();
 
 <TeamsLayout name={team.data.name} kana={team.data.kana}>
     <Content />
+    <Member leader={team.data.leader} member={team.data.member} />
     <Kanban words={team.data.kanban} />
 </TeamsLayout>

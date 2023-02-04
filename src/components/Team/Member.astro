@@ -1,0 +1,36 @@
+---
+import type { TeamMemberType } from "../../content/schemas/team";
+import { getEntryBySlug } from "astro:content";
+import { m } from "vitest/dist/types-aac763a5";
+
+export interface Props {
+    leader: TeamMemberType;
+    member: TeamMemberType[];
+    ob?: TeamMemberType[];
+}
+const { leader, member } = Astro.props;
+
+async function joinWithPerson(tm: TeamMemberType) {
+    const p = await getEntryBySlug("people", tm.slug);
+    return { slug: tm.slug, role: tm.role, ...p?.data };
+}
+
+const allTeamMember = await Promise.all(
+    [leader, ...member].map((tm) => joinWithPerson(tm))
+);
+---
+
+<h3>メンバー</h3>
+<table>
+    {
+        allTeamMember.map((m) => (
+            <tr>
+                <th>{m.role}</th>
+                <td>
+                    <a href={"/people/" + m.slug}>{m.name}</a>
+                </td>
+                <td>{m.summary}</td>
+            </tr>
+        ))
+    }
+</table>

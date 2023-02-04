@@ -5,6 +5,8 @@ const TeamMember = z.object({
     role: z.string().optional(),
 });
 
+export type TeamMemberType = z.infer<typeof TeamMember>;
+
 export const schema = defineCollection({
     schema: z.object({
         name: z.string(),
