@@ -1,11 +1,8 @@
 import { z, defineCollection } from "astro:content";
-const peopleCollection = defineCollection({
-    schema: z.object({
-        name: z.string(),
-        kana: z.string(),
-        summary: z.string(),
-    }),
-});
+import { PersonSchema, TeamSchema } from "./schemas";
+
+
 export const collections = {
-    "people": peopleCollection
+    "people": PersonSchema,
+    "teams": TeamSchema,
 }
