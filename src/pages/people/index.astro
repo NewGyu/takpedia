@@ -7,5 +7,9 @@ const people = await getCollection("people");
 ---
 
 <DefaultLayout title="登場人物一覧">
-    {people.map((p) => <PersonSummary person={p} />)}
+    {
+        people
+            .sort((a, b) => (a.data.kana < b.data.kana ? -1 : 1))
+            .map((p) => <PersonSummary person={p} />)
+    }
 </DefaultLayout>
