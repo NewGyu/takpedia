@@ -1,9 +1,14 @@
+---
+import toge from "./toge.svg";
+import kao from "./taku_kao.png";
+---
+
 <aside
     id="backbone"
     class="hidden sm:flex flex-col items-center bg-gradient-to-r from-bukkomi-blue via-bukkomi-blue-light to-bukkomi-blue w-12 pt-2"
 >
     <figure class="relative">
-        <img class="w-full" src="/toge.svg" />
+        <img class="w-full" src={toge} />
         <span
             class="text-virtical text-white leading-none font-serif font-bold italic absolute top-1 left-2"
             >疾風<br />&nbsp;伝説</span
@@ -14,7 +19,7 @@
     >
         特攻の拓
     </h2>
-    <img class="w-full" src="/taku_kao.png" />
+    <img class="w-full" src={kao} />
     <ul class="text-virtical text-white font-bold py-1">
         <li>原作/佐々木飛朗斗</li>
         <li>漫画/所十三</li>
