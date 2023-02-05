@@ -1,0 +1,13 @@
+---
+interface Pros {
+    src: string;
+    alt?: string;
+}
+const { src, alt } = Astro.props;
+const altText = `© 講談社 特攻の拓 ${alt || ""}`;
+---
+
+<figure>
+    <img src={src} alt={altText} width={128} />
+    <span class="text-xs">{altText}</span>
+</figure>
