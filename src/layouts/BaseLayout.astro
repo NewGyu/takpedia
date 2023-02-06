@@ -4,23 +4,27 @@ import Footer from "../components/Global/Footer.astro";
 import Backbone from "../components/Global/Backbone.astro";
 import SideNavi from "../components/Global/SideNavi.astro";
 import MainContent from "../components/MainContent/Index.astro";
+import Ogp from "../components/Global/Ogp.astro";
 import "../style/global.css";
 export interface Props {
     title: string;
     ruby?: string;
+    summary?: string;
     isMarkdown: boolean;
 }
-const { title, ruby, isMarkdown } = Astro.props;
+const { title, ruby, summary, isMarkdown } = Astro.props;
+const pageTitle = `拓ペディア | ${title}`;
 ---
 
 <!DOCTYPE html>
 <html lang="ja" class="h-full bg-gray-100">
-    <head>
+    <head prefix="og: https://ogp.me/ns#">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>拓ペディア|{title}</title>
+        <title>{pageTitle}</title>
+        <Ogp title={pageTitle} summary={summary} />
     </head>
     <body class="h-full">
         <div class="flex flex-col min-h-screen max-w-full">
