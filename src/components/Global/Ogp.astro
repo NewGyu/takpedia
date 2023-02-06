@@ -1,5 +1,6 @@
 ---
 import OgpImage from "./ogp_image.png";
+import path from "node:path";
 export interface Props {
     title: string;
     summary?: string;
@@ -7,6 +8,7 @@ export interface Props {
 
 const { title, summary } = Astro.props;
 const description = `特攻の拓 非公式総合サイト 拓ペディア | ${summary || ""}`;
+const imageUrl = path.join(Astro.site?.toString() || "", OgpImage);
 ---
 
 <meta property="og:url" content={Astro.url} />
@@ -14,5 +16,5 @@ const description = `特攻の拓 非公式総合サイト 拓ペディア | ${s
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content="拓ペディア,タクペディア" />
-<meta property="og:image" content={OgpImage} />
+<meta property="og:image" content={imageUrl} />
 <meta name="twitter:card" content="summary" />
