@@ -13,7 +13,7 @@ export const schema = defineCollection({
         kana: z.string(),
         summary: z.string(),
         leader: TeamMember,
-        member: TeamMember.array(),
+        member: TeamMember.array().optional(),
         kanban: z.string().array().optional()
     })
 });
