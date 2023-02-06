@@ -13,6 +13,7 @@ export interface Props {
     isMarkdown: boolean;
 }
 const { title, ruby, summary, isMarkdown } = Astro.props;
+const pageTitle = `拓ペディア | ${title}`;
 ---
 
 <!DOCTYPE html>
@@ -22,8 +23,8 @@ const { title, ruby, summary, isMarkdown } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>拓ペディア | {title}</title>
-        <Ogp title={title} summary={summary} />
+        <title>{pageTitle}</title>
+        <Ogp title={pageTitle} summary={summary} />
     </head>
     <body class="h-full">
         <div class="flex flex-col min-h-screen max-w-full">
