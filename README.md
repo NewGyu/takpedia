@@ -2,7 +2,7 @@
 
 ## What's this?
 
-このリポジトリは特攻の拓総合サイト[拓ペディア](https://takpedia.pages.dev/)のソースコードを管理するものです。
+このリポジトリは特攻の拓総合サイト[拓ペディア](https://bukko.me/)のソースコードを管理するものです。
 
 ## How to develop and buiold
 

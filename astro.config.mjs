@@ -9,6 +9,6 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://takpedia.pages.dev/",
+  site: "https://bukko.me/",
   integrations: [tailwind(), mdx(), sitemap()]
 });
