@@ -1,6 +1,5 @@
 ---
 import OgpImage from "./ogp_image.png";
-import path from "node:path";
 export interface Props {
     title: string;
     summary?: string;
@@ -19,3 +18,4 @@ const imageUrl = (Astro.site?.toString() || "") + OgpImage;
 <meta property="og:image" content={imageUrl} />
 <meta name="twitter:card" content="summary" />
 <meta name="description" content={description} />
+<link rel="canonical" href={Astro.url} />
