@@ -1,5 +1,5 @@
 ---
-import MobileMenuButton from "./MobileMenuButton.astro";
+import { MobileMenu } from "../MobileMenu/index";
 import SiteBanner from "./SiteBanner.astro";
 import SubTitle from "./SubTitle.astro";
 ---
@@ -13,8 +13,8 @@ import SubTitle from "./SubTitle.astro";
                 <SiteBanner />
                 <SubTitle />
             </div>
-            <div class="-mr-2 flex sm:hidden">
-                <MobileMenuButton />
+            <div class="-mr-2 sm:hidden">
+                <MobileMenu client:visible />
             </div>
         </div>
     </div>
