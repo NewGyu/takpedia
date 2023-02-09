@@ -4,8 +4,11 @@ const btnStyle = {
         "opacity-50",
         "bg-gray-800",
         "p-2",
-        "mr-2",
         "text-gray-400",
+        "z-100"
+    ],
+    position: [
+        "absolute", "top-4", "right-2"
     ],
     hover: ["hover:bg-gray-700", "hover:text-white"],
     focus: [
@@ -18,15 +21,18 @@ const btnStyle = {
 };
 
 interface Props {
-    onClick: () => void
+    opened: boolean;
+    onClick: () => void;
 }
+
+const ThreeBar = <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />;
+const XMark = <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />;
+
 export const MobileMenuButton = (props: Props) => {
     return (
         <button
             type="button"
-            className={[...btnStyle.base, ...btnStyle.hover, ...btnStyle.focus].join(" ")}
-            aria-controls="mobile-menu"
-            aria-expanded="false"
+            className={[...btnStyle.base, ...btnStyle.position, ...btnStyle.hover, ...btnStyle.focus].join(" ")}
             onClick={props.onClick}
         >
             <svg
@@ -38,10 +44,7 @@ export const MobileMenuButton = (props: Props) => {
                 stroke="currentColor"
                 aria-hidden="true"
             >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                {props.opened ? XMark : ThreeBar}
             </svg>
             <svg
                 className="hidden h-6 w-6"

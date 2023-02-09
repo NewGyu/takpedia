@@ -3,15 +3,15 @@ import { MobileMenuButton } from "./ExpandButton";
 import { Menu } from "./Menu";
 
 export const MobileMenu = () => {
-    const [display, setDisplay] = useState(false);
+    const [opened, setOpened] = useState(false);
     const onClickHandler = () => {
-        setDisplay(!display);
+        setOpened(!opened);
     };
 
     return (
         <>
-            <MobileMenuButton onClick={onClickHandler} />
-            <Menu display={display} />
+            <Menu display={opened} />
+            <MobileMenuButton onClick={onClickHandler} opened={opened} />
         </>
     );
 }
