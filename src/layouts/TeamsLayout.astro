@@ -1,10 +1,29 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import PersonSummary from "../components/People/PersonSummary.astro";
+import Article from "../components/Standard/Article.astro";
+import PageHeader from "../components/Standard/PageHeader.astro";
+import PageTitle from "../components/Standard/PageTitle.astro";
 import "../style/markdown.css";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+    name: string;
+    kana: string;
+    summary?: string;
+}
 
 const t = Astro.props;
 ---
 
-<BaseLayout title={t.name} ruby={t.kana} isMarkdown={true}>
-    <slot />
+<BaseLayout title={t.name} summary={t.summary}>
+    <PageHeader>
+        <ruby>{t.kana}</ruby>
+        <PageTitle>
+            {t.name}
+        </PageTitle>
+    </PageHeader>
+    <PersonSummary>{t.summary}</PersonSummary>
+    <Article markdown={true}>
+        <slot />
+    </Article>
 </BaseLayout>

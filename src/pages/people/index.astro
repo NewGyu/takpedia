@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from "../../layouts/DefaultLayout.astro";
-import PersonSummary from "../../components/People/PersonSummary.astro";
+import PeopleListItem from "../../components/People/PeopleListItem.astro";
 import { getCollection } from "astro:content";
 
 const people = await getCollection("people");
@@ -10,6 +10,6 @@ const people = await getCollection("people");
     {
         people
             .sort((a, b) => (a.data.kana < b.data.kana ? -1 : 1))
-            .map((p) => <PersonSummary person={p} />)
+            .map((p) => <PeopleListItem person={p} />)
     }
 </DefaultLayout>

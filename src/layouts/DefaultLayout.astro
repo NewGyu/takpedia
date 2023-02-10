@@ -1,11 +1,24 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import "../style/markdown.css";
+import PageHeader from "../components/Standard/PageHeader.astro";
+import PageTitle from "../components/Standard/PageTitle.astro";
+import Article from "../components/Standard/Article.astro";
 
-const { title } = Astro.props.frontmatter || Astro.props;
-const isMarkdown = Astro.props.frontmatter != undefined;
+interface Props {
+    title: string;
+    summary?: string;
+}
+const isMarkdown = Astro.props.frontmatter ? true : false;
+const { title, summary } = Astro.props.frontmatter || Astro.props;
 ---
 
-<BaseLayout title={title} isMarkdown={isMarkdown}>
-    <slot />
+<BaseLayout title={title} summary={summary}>
+    <PageHeader>
+        <PageTitle>
+            {title}
+        </PageTitle>
+    </PageHeader>
+    <Article markdown={isMarkdown}>
+        <slot />
+    </Article>
 </BaseLayout>
