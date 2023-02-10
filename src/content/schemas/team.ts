@@ -7,7 +7,7 @@ const TeamMember = z.object({
 
 export type TeamMemberType = z.infer<typeof TeamMember>;
 
-export const schema = defineCollection({
+export const TeamSchema = defineCollection({
     schema: z.object({
         name: z.string(),
         kana: z.string(),

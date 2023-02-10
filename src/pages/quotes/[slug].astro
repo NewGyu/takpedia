@@ -1,0 +1,19 @@
+---
+import QuoteLayout from "@layouts/QuoteLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const quotes = await getCollection("famousQuotes");
+    return quotes.map((quote) => ({
+        params: { slug: quote.slug },
+        props: quote,
+    }));
+}
+
+const { sentence, said_by } = Astro.props.data;
+const { Content } = await Astro.props.render();
+---
+
+<QuoteLayout sentence={sentence}>
+    <Content />
+</QuoteLayout>
