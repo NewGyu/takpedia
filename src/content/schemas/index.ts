@@ -1,2 +1,3 @@
-export { schema as PersonSchema } from "./person"
-export { schema as TeamSchema } from "./team";
+export { PersonSchema } from "./person"
+export { TeamSchema } from "./team";
+export { FamousQuoteSchema } from "./famousQuote";
