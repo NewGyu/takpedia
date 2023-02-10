@@ -4,7 +4,6 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     const quotes = await getCollection("famousQuotes");
-    console.log(quotes);
     return quotes.map((quote) => ({
         params: { slug: quote.slug },
         props: quote,
