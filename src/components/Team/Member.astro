@@ -20,16 +20,16 @@ const allTeamMember = await Promise.all(
 ---
 
 <h3>メンバー</h3>
-<table>
+<dl>
     {
         allTeamMember.map((m) => (
-            <tr>
-                <th>{m.role}</th>
-                <td>
+            <>
+                <dt>
                     <a href={"/people/" + m.slug}>{m.name}</a>
-                </td>
-                <td>{m.summary}</td>
-            </tr>
+                    {m.role ? `【${m.role}】` : ""}
+                </dt>
+                <dd>{m.summary}</dd>
+            </>
         ))
     }
-</table>
+</dl>
