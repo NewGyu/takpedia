@@ -1,0 +1,13 @@
+---
+import "../../style/markdown.css";
+
+interface Props {
+    markdown?: boolean;
+}
+const isMarkdown = Astro.props.markdown || false;
+const markdownClass = isMarkdown ? " markdown-body" : "";
+---
+
+<article class={"pt-4" + markdownClass}>
+    <slot />
+</article>

@@ -6,14 +6,14 @@ export async function getStaticPaths() {
     const people = await getCollection("people");
     return people.map((p) => ({
         params: { slug: p.slug },
-        props: { p },
+        props: p,
     }));
 }
 
-const { p } = Astro.props;
-const { Content } = await p.render();
+const { name, kana, summary } = Astro.props.data;
+const { Content } = await Astro.props.render();
 ---
 
-<PeopleLayout name={p.data.name} kana={p.data.kana}>
+<PeopleLayout name={name} kana={kana} summary={summary}>
     <Content />
 </PeopleLayout>

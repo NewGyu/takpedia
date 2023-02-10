@@ -8,16 +8,16 @@ export async function getStaticPaths() {
     const teams = await getCollection("teams");
     return teams.map((team) => ({
         params: { slug: team.slug },
-        props: { team },
+        props: team,
     }));
 }
 
-const { team } = Astro.props;
-const { Content } = await team.render();
+const { name, kana, summary, leader, member, kanban } = Astro.props.data;
+const { Content } = await Astro.props.render();
 ---
 
-<TeamsLayout name={team.data.name} kana={team.data.kana}>
+<TeamsLayout name={name} kana={kana} summary={summary}>
     <Content />
-    <Member leader={team.data.leader} member={team.data.member} />
-    <Kanban words={team.data.kanban} />
+    <Member leader={leader} member={member} />
+    <Kanban words={kanban} />
 </TeamsLayout>
