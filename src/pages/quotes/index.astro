@@ -1,0 +1,15 @@
+---
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import QuoteListItem from "@components/Quote/QuoteListItem.astro";
+import { getCollection } from "astro:content";
+
+const quotes = await getCollection("famousQuotes");
+---
+
+<DefaultLayout title="至極の名言一覧">
+    {
+        quotes
+            .sort((a, b) => a.slug.localeCompare(b.slug))
+            .map((q) => <QuoteListItem quote={q} />)
+    }
+</DefaultLayout>

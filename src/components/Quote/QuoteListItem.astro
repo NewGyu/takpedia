@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+    quote: CollectionEntry<"famousQuotes">;
+}
+
+const { quote } = Astro.props;
+---
+
+<dl class="border-2 rounded-md border-solid border-bukkomi-blue-dark p-2 mb-2">
+    <dt>
+        <a class="text-lg font-semibold" href={"/quotes/" + quote.slug}
+            >{quote.data.sentence}</a
+        >
+    </dt>
+</dl>
