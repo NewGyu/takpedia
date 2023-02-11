@@ -7,4 +7,7 @@ interface Props {
 
 const {img} = Astro.props;
 ---
-{img ? <QuotedImage src={path.join("/img/face", img)} width="128px" additionalClass={["max-w-none"]} /> : <></>}
+{img? 
+  <QuotedImage src={path.join("/img/face", img)} additionalClass={["max-h-32","max-w-32"]} /> 
+  : <></>
+}

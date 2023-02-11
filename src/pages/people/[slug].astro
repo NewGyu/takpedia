@@ -19,9 +19,10 @@ export async function getStaticPaths() {
 const { data } = Astro.props;
 const { Content } = await Astro.props.render();
 ---
+
 <BaseLayout title={data.name} summary={data.summary}>
-    <div class="flex">
-        <section>
+    <section class="flex justify-items-end">
+        <div class="flex-grow">
             <PageHeader>
                 <div class="flex items-end">
                     <Name name={data.name} kana={data.kana} />
@@ -29,13 +30,14 @@ const { Content } = await Astro.props.render();
                 </div>
             </PageHeader>
             <PersonSummary>{data.summary}</PersonSummary>
-            <Article markdown={true}>
-                <Content />
-            </Article>
-        </section>
-        <section>
+        </div>
+        <div>
             <FaceImg img={data.faceImg} />
-        </section>
-    </div>
+        </div>
+    </section>
+    <section>
+        <Article markdown={true}>
+            <Content />
+        </Article>
+    </section>
 </BaseLayout>
-
