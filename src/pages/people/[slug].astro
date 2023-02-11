@@ -1,4 +1,5 @@
 ---
+import FaceImg from "@components/People/FaceImg.astro";
 import Name from "@components/People/Name.astro";
 import Nickname from "@components/People/Nickname.astro";
 import PersonSummary from "@components/People/PersonSummary.astro";
@@ -19,15 +20,22 @@ const { data } = Astro.props;
 const { Content } = await Astro.props.render();
 ---
 <BaseLayout title={data.name} summary={data.summary}>
-    <PageHeader>
-        <div class="flex items-end">
-            <Name name={data.name} kana={data.kana} />
-            <Nickname name={data.nickname} />
-        </div>
-    </PageHeader>
-    <PersonSummary>{data.summary}</PersonSummary>
-    <Article markdown={true}>
-        <Content />
-    </Article>
+    <div class="flex">
+        <section>
+            <PageHeader>
+                <div class="flex items-end">
+                    <Name name={data.name} kana={data.kana} />
+                    <Nickname name={data.nickname} />
+                </div>
+            </PageHeader>
+            <PersonSummary>{data.summary}</PersonSummary>
+            <Article markdown={true}>
+                <Content />
+            </Article>
+        </section>
+        <section>
+            <FaceImg img={data.faceImg} />
+        </section>
+    </div>
 </BaseLayout>
 

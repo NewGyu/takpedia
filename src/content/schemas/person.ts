@@ -6,5 +6,6 @@ export const PersonSchema = defineCollection({
         kana: z.string(),
         summary: z.string(),
         nickname: z.string().optional(),
+        faceImg: z.string().optional(),
     }),
 });
