@@ -5,5 +5,6 @@ export const PersonSchema = defineCollection({
         name: z.string(),
         kana: z.string(),
         summary: z.string(),
+        nickname: z.string().optional(),
     }),
 });
