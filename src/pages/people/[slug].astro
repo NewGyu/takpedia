@@ -1,6 +1,11 @@
 ---
+import Name from "@components/People/Name.astro";
+import Nickname from "@components/People/Nickname.astro";
+import PersonSummary from "@components/People/PersonSummary.astro";
+import Article from "@components/Standard/Article.astro";
+import PageHeader from "@components/Standard/PageHeader.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import PeopleLayout from "../../layouts/PeopleLayout.astro";
 
 export async function getStaticPaths() {
     const people = await getCollection("people");
@@ -10,10 +15,19 @@ export async function getStaticPaths() {
     }));
 }
 
-const { name, kana, summary } = Astro.props.data;
+const { data } = Astro.props;
 const { Content } = await Astro.props.render();
 ---
+<BaseLayout title={data.name} summary={data.summary}>
+    <PageHeader>
+        <div class="flex items-end">
+            <Name name={data.name} kana={data.kana} />
+            <Nickname name={data.nickname} />
+        </div>
+    </PageHeader>
+    <PersonSummary>{data.summary}</PersonSummary>
+    <Article markdown={true}>
+        <Content />
+    </Article>
+</BaseLayout>
 
-<PeopleLayout name={name} kana={kana} summary={summary}>
-    <Content />
-</PeopleLayout>
