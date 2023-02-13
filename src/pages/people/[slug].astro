@@ -2,7 +2,7 @@
 import FaceImg from "@components/People/FaceImg.astro";
 import Name from "@components/People/Name.astro";
 import Nickname from "@components/People/Nickname.astro";
-import PersonSummary from "@components/People/PersonSummary.astro";
+import PersonBasicProfile from "@components/People/PersonBasicProfile.astro";
 import Article from "@components/Standard/Article.astro";
 import PageHeader from "@components/Standard/PageHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -12,12 +12,13 @@ export async function getStaticPaths() {
     const people = await getCollection("people");
     return people.map((p) => ({
         params: { slug: p.slug },
-        props: p,
+        props: { personEntry: p },
     }));
 }
 
-const { data } = Astro.props;
-const { Content } = await Astro.props.render();
+const { personEntry } = Astro.props;
+const { data } = personEntry;
+const { Content } = await personEntry.render();
 ---
 
 <BaseLayout title={data.name} summary={data.summary}>
@@ -29,7 +30,7 @@ const { Content } = await Astro.props.render();
                     <Nickname name={data.nickname} />
                 </div>
             </PageHeader>
-            <PersonSummary>{data.summary}</PersonSummary>
+            <PersonBasicProfile personEntry={personEntry} />
         </div>
         <div>
             <FaceImg img={data.faceImg} />

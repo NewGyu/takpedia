@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    personSlug: string;
+}
+
+const { personSlug } = Astro.props;
+
+const teams = (await getCollection("teams"))
+    .map((t) => ({
+        slug: t.slug,
+        name: t.data.name,
+        members: [t.data.leader, ...(t.data.member || [])],
+    }))
+    .filter((t) => t.members.find((x) => personSlug === x.slug))
+    .map((t) => ({
+        teamSlug: t.slug,
+        teamName: t.name,
+        role: t.members.find((x) => personSlug === x.slug)?.role,
+    }));
+---
+
+<ul>
+    {
+        teams.map((t) => (
+            <li>
+                <a href={"/teams/" + t.teamSlug}> {t.teamName}</a>
+                { t.role ? <span>の{t.role}</span> : <></>}
+            </li>
+        ))
+    }
+</ul>
