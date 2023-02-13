@@ -1,0 +1,13 @@
+---
+import QuotedImage from "@components/QuotedImage.astro"
+import path from "node:path";
+interface Props {
+    img?: string;
+}
+
+const {img} = Astro.props;
+---
+{img? 
+  <QuotedImage src={path.join("/img/face", img)} additionalClass={["max-h-32","max-w-32"]} /> 
+  : <></>
+}

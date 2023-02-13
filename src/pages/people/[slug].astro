@@ -1,19 +1,44 @@
 ---
+import FaceImg from "@components/People/FaceImg.astro";
+import Name from "@components/People/Name.astro";
+import Nickname from "@components/People/Nickname.astro";
+import PersonBasicProfile from "@components/People/PersonBasicProfile.astro";
+import Article from "@components/Standard/Article.astro";
+import PageHeader from "@components/Standard/PageHeader.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import PeopleLayout from "../../layouts/PeopleLayout.astro";
 
 export async function getStaticPaths() {
     const people = await getCollection("people");
     return people.map((p) => ({
         params: { slug: p.slug },
-        props: p,
+        props: { personEntry: p },
     }));
 }
 
-const { name, kana, summary } = Astro.props.data;
-const { Content } = await Astro.props.render();
+const { personEntry } = Astro.props;
+const { data } = personEntry;
+const { Content } = await personEntry.render();
 ---
 
-<PeopleLayout name={name} kana={kana} summary={summary}>
-    <Content />
-</PeopleLayout>
+<BaseLayout title={data.name} summary={data.summary}>
+    <section class="flex justify-items-end">
+        <div class="flex-grow">
+            <PageHeader>
+                <div class="flex items-end">
+                    <Name name={data.name} kana={data.kana} />
+                    <Nickname name={data.nickname} />
+                </div>
+            </PageHeader>
+            <PersonBasicProfile personEntry={personEntry} />
+        </div>
+        <div>
+            <FaceImg img={data.faceImg} />
+        </div>
+    </section>
+    <section>
+        <Article markdown={true}>
+            <Content />
+        </Article>
+    </section>
+</BaseLayout>

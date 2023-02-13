@@ -1,0 +1,16 @@
+---
+import PageTitle from '@components/Standard/PageTitle.astro';
+
+interface Props {
+    name: string;
+    kana: string;
+}
+
+const {name, kana} = Astro.props;
+---
+<div>
+    <ruby>{kana}</ruby>
+    <PageTitle>
+        {name}
+    </PageTitle>
+</div>

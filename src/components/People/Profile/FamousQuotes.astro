@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    personSlug: string;
+}
+
+const { personSlug } = Astro.props;
+
+const quotes = (await getCollection("famousQuotes"))
+    .filter((q) => (q.data.said_by || []).find((x: string) => personSlug === x))
+    .map((q) => ({ quoteSlug: q.slug, sentence: q.data.sentence }));
+---
+{
+    quotes.length > 0 ? (
+        <h3 class="font-semibold">名言</h3>
+        <ul class="list-disc pl-8">
+            {
+                quotes.map((q) => (
+                    <li>
+                        <a href={"/quotes/" + q.quoteSlug}> {q.sentence}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    ) : <></>
+}
