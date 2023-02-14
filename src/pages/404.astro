@@ -1,5 +1,16 @@
 ---
-import Layout from "../layouts/DefaultLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
-<Layout title='んな"ページ"ねえんだよ！！！' />
+<BaseLayout title="Not found" summary="page not found">
+    <div class="flex flex-col text-center h-full justify-center items-center">
+        <section class="text-4xl">
+            <p>んな"ページ"ねえんだよ！！！</p>
+            <p class="pt-4">ダボがぁ！！</p>
+        </section>
+        <section class="pt-6">
+            <p>上等こいて申し訳ありません。</p>
+            <p>ご指定のページは存在しないか、まだ作ってません。</p>
+        </section>
+    </div>
+</BaseLayout>
