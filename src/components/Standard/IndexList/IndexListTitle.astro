@@ -1,0 +1,21 @@
+---
+interface Props {
+    href: string;
+    title: string;
+    ruby?: string;
+}
+
+const { href, title, ruby} = Astro.props;
+---
+<dt>
+    <p>
+        <a class="text-lg font-semibold" href={href}>
+            {title}
+        </a>
+        { ruby ? <ruby class="text-sm">({ruby})</ruby> : <></>}
+        
+    </p>
+    <p>
+        <slot />
+    </p>
+</dt>

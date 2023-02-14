@@ -1,0 +1,15 @@
+---
+import BikeListItem from "@components/Bike/BikeListItem.astro";
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+
+const bikes = await getCollection("bikes");
+---
+
+<DefaultLayout title="愛車一覧">
+    {
+        bikes
+            .sort((a, b) => a.data.kana.localeCompare(b.data.kana))
+            .map((b) => <BikeListItem bike={b} />)
+    }
+</DefaultLayout>
