@@ -1,5 +1,9 @@
 ---
+import IndexListDesc from "@components/Standard/IndexList/IndexListDesc.astro";
+import IndexListItem from "@components/Standard/IndexList/IndexListItem.astro";
+import IndexListTitle from "@components/Standard/IndexList/IndexListTitle.astro";
 import type { CollectionEntry } from "astro:content";
+import Owner from "./Owner.astro";
 
 export interface Props {
     bike: CollectionEntry<"bikes">;
@@ -8,9 +12,14 @@ export interface Props {
 const { bike } = Astro.props;
 ---
 
-<article>
-    <a href={"/bikes/" + bike.slug}>
-        {bike.data.name}
-    </a>
-    <p>{bike.data.summary}</p>
-</article>
+<IndexListItem>
+    <IndexListTitle
+        title={bike.data.name}
+        href={"/bikes/" + bike.slug}
+        ruby={bike.data.kana}
+    />
+    <IndexListDesc>
+        <p><Owner personSlug={bike.data.owned_by} /></p>
+        <p>{bike.data.summary}</p>
+    </IndexListDesc>
+</IndexListItem>

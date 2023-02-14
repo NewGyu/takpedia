@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+    personSlug: string;
+}
+
+const { personSlug } = Astro.props;
+
+const owner = (await getCollection("people")).find(x => x.slug === personSlug);
+---
+{ 
+    owner? 
+        <span><a href={"/people/" + owner.slug}>{owner.data.name}</a>の愛車</span> 
+        : <></>
+}
