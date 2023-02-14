@@ -1,23 +1,39 @@
 ---
+import Article from "@components/Standard/Article.astro";
+import PageHeader from "@components/Standard/PageHeader.astro";
+import PageTitle from "@components/Standard/PageTitle.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Kanban from "../../components/Team/Kanban.astro";
 import Member from "../../components/Team/Member.astro";
-import TeamsLayout from "../../layouts/TeamsLayout.astro";
 
 export async function getStaticPaths() {
     const teams = await getCollection("teams");
     return teams.map((team) => ({
         params: { slug: team.slug },
-        props: team,
+        props: { teamEntry: team },
     }));
 }
 
-const { name, kana, summary, leader, member, kanban } = Astro.props.data;
-const { Content } = await Astro.props.render();
+const { teamEntry } = Astro.props;
+const { data } = teamEntry;
+const { Content } = await teamEntry.render();
 ---
 
-<TeamsLayout name={name} kana={kana} summary={summary}>
-    <Content />
-    <Member leader={leader} member={member} />
-    <Kanban words={kanban} />
-</TeamsLayout>
+<BaseLayout title={data.name} summary={data.summary}>
+    <section>
+        <PageHeader>
+            <ruby>{data.kana}</ruby>
+            <PageTitle>
+                {data.name}
+            </PageTitle>
+        </PageHeader>
+    </section>
+    <section>
+        <Article markdown={true}>
+            <Content />
+            <Member leader={data.leader} member={data.member} />
+            <Kanban words={data.kanban} />
+        </Article>
+    </section>
+</BaseLayout>
