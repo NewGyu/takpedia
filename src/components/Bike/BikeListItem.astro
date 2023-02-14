@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+    bike: CollectionEntry<"bikes">;
+}
+
+const { bike } = Astro.props;
+---
+
+<article>
+    <a href={"/bikes/" + bike.slug}>
+        {bike.data.name}
+    </a>
+    <p>{bike.data.summary}</p>
+</article>
