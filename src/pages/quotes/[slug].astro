@@ -1,19 +1,34 @@
 ---
-import QuoteLayout from "@layouts/QuoteLayout.astro";
+import Article from "@components/Standard/Article.astro";
+import PageHeader from "@components/Standard/PageHeader.astro";
+import PageTitle from "@components/Standard/PageTitle.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     const quotes = await getCollection("famousQuotes");
-    return quotes.map((quote) => ({
-        params: { slug: quote.slug },
-        props: quote,
+    return quotes.map((q) => ({
+        params: { slug: q.slug },
+        props: { quoteEntry: q },
     }));
 }
 
-const { sentence, said_by } = Astro.props.data;
-const { Content } = await Astro.props.render();
+const { quoteEntry } = Astro.props;
+const { data } = quoteEntry;
+const { Content } = await quoteEntry.render();
 ---
 
-<QuoteLayout sentence={sentence}>
-    <Content />
-</QuoteLayout>
+<BaseLayout title={data.sentence}>
+    <section>
+        <PageHeader>
+            <PageTitle>
+                {data.sentence}
+            </PageTitle>
+        </PageHeader>
+    </section>
+    <section>
+        <Article markdown={true}>
+            <Content />
+        </Article>
+    </section>
+</BaseLayout>
