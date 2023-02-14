@@ -1,5 +1,6 @@
-import { z, defineCollection } from "astro:content";
-import { PersonSchema, TeamSchema, FamousQuoteSchema } from "./schemas";
+import { PersonSchema } from "../schemas/person"
+import { TeamSchema } from "../schemas/team";
+import { FamousQuoteSchema } from "../schemas/famousQuote";
 
 
 export const collections = {
