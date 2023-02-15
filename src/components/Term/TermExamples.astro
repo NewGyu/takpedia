@@ -1,0 +1,27 @@
+---
+export interface Example {
+    sentence: string;
+    note?: string;
+}
+
+interface Props {
+    examples?: Example[];
+}
+
+const { examples } = Astro.props;
+---
+
+{
+    examples ? (
+        <ol class="p-2">
+            {
+                examples.map((e,idx) => 
+                    <li>
+                        <p><em class="font-semibold">用例{idx + 1}:</em> {e.sentence}</p>
+                        <p class="pl-8">{e.note}</p>
+                    </li>
+                )
+            }
+        </ol>
+        ) : <></>
+}
