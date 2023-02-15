@@ -1,0 +1,24 @@
+---
+import TermExamples, { Example } from "./TermExamples.astro";
+
+interface Term {
+    word: string;
+    kana: string;
+    desc: string;
+    examples?: Example[];
+}
+interface Props {
+    term: Term;
+}
+
+const { term } = Astro.props;
+---
+
+<div
+    class="flex items-center border-b-2 border-dotted border-bukkomi-blue-light"
+>
+    <h3 class="text-lg font-semibold"><a id={term.word}></a>{term.word}</h3>
+    <ruby class="text-xs">（{term.kana}）</ruby>
+</div>
+<p>{term.desc}</p>
+<TermExamples examples={term.examples} />

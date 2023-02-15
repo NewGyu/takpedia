@@ -1,0 +1,15 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+import TermChunk from "@components/Term/TermChunk.astro";
+
+const termChunks = await getCollection("terminologies");
+---
+
+<DefaultLayout title="特攻（ぶっこみ）用語集">
+    {
+        termChunks
+            .sort((a, b) => a.data.order - b.data.order)
+            .map((t) => <TermChunk chunk={t} />)
+    }
+</DefaultLayout>
