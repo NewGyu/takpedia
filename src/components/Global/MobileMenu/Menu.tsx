@@ -13,7 +13,7 @@ const Link = (props: LinkProps) => {
 const MENU_LINKS = [
     { text: "登場人物", href: "/people/" },
     { text: "族(チーム)", href: "/teams/" },
-    { text: "組織", href: "/orgs/" },
+    { text: "その他組織", href: "/orgs/" },
     { text: "愛車", href: "/bikes/" },
     { text: "名言", href: "/quotes/" },
     { text: "用語", href: "/terms/" },

@@ -1,0 +1,21 @@
+---
+import OrgListItem from "@components/Org/OrgListItem.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import "../../style/markdown.css";
+
+export async function getStaticPaths() {
+    const orgs = await getCollection("orgs");
+    return orgs.map((org) => ({
+        params: { slug: org.slug },
+        props: { orgEntry: org },
+    }));
+}
+
+const { orgEntry } = Astro.props;
+const { data } = orgEntry;
+---
+
+<BaseLayout title={data.name} summary={`登場する組織 ${data.name}`}>
+    <OrgListItem org={orgEntry} />
+</BaseLayout>
