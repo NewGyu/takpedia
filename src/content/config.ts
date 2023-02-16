@@ -3,6 +3,7 @@ import { TeamSchema } from "../schemas/team";
 import { FamousQuoteSchema } from "../schemas/famousQuote";
 import { BikeSchema } from "../schemas/bikes";
 import { ListOfTermsSchema } from "../schemas/terms";
+import { OrgSchema } from "../schemas/orgs";
 
 
 export const collections = {
@@ -11,4 +12,5 @@ export const collections = {
     "famousQuotes": FamousQuoteSchema,
     "bikes": BikeSchema,
     "terminologies": ListOfTermsSchema,
+    "orgs": OrgSchema,
 }

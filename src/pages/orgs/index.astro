@@ -1,0 +1,15 @@
+---
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+import OrgListItem from "@components/Org/OrgListItem.astro";
+
+const orgs = await getCollection("orgs");
+---
+
+<DefaultLayout title="学校、他組織一覧" summary="作品に登場する組織一覧">
+    {
+        orgs
+            .sort((a, b) => a.data.kana.localeCompare(b.data.kana))
+            .map((o) => <OrgListItem org={o} />)
+    }
+</DefaultLayout>
