@@ -1,0 +1,20 @@
+---
+import { getEntryBySlug } from "astro:content";
+
+interface Props {
+    leader_slug: string;
+    role?: string;
+}
+
+const { leader_slug, role } = Astro.props;
+
+const leader = await getEntryBySlug("people", leader_slug);
+---
+{
+    leader ? (
+        <>
+            <span class="pr-1">{role || ""}</span> 
+            <a href={"/people/" + leader.slug}>{leader.data.name}</a>
+        </>
+    ) : <></>
+}
