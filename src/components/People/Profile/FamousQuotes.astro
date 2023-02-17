@@ -8,7 +8,7 @@ interface Props {
 const { personSlug } = Astro.props;
 
 const quotes = (await getCollection("famousQuotes"))
-    .filter((q) => (q.data.said_by || []).find((x: string) => personSlug === x))
+    .filter((q) => q.data.said_by === personSlug)
     .map((q) => ({ quoteSlug: q.slug, sentence: q.data.sentence }));
 ---
 {

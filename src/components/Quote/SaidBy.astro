@@ -1,0 +1,16 @@
+---
+import { getEntryBySlug } from 'astro:content';
+
+interface Props {
+    personSlug: string;
+}
+
+const {personSlug} = Astro.props;
+
+const person = await getEntryBySlug("people", personSlug);
+---
+{
+    person ? (
+        <><a href={"/people/" + person.slug }>{ person.data.name}</a>さんの名言</>
+    ) : <></>
+}

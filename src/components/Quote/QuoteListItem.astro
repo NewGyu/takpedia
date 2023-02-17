@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import SaidBy from "./SaidBy.astro";
 
 export interface Props {
     quote: CollectionEntry<"famousQuotes">;
@@ -13,5 +14,6 @@ const { quote } = Astro.props;
         <a class="text-lg font-semibold" href={"/quotes/" + quote.slug}
             >{quote.data.sentence}</a
         >
+        <p><SaidBy personSlug={quote.data.said_by} /></p>
     </dt>
 </dl>
