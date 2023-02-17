@@ -20,14 +20,18 @@ const teams = (await getCollection("teams"))
         role: t.members.find((x) => personSlug === x.slug)?.role,
     }));
 ---
-
-<ul>
-    {
-        teams.map((t) => (
-            <li>
-                <a href={"/teams/" + t.teamSlug}> {t.teamName}</a>
-                { t.role ? <span>の{t.role}</span> : <></>}
-            </li>
-        ))
-    }
-</ul>
+{
+    teams.length > 0 ? (
+    <p>
+        {
+            teams.map((t, idx) => (
+                <>
+                    {idx > 0? "兼": ""}
+                    <a href={"/teams/" + t.teamSlug}> {t.teamName}</a>
+                    { t.role ? <span>の{t.role}</span> : <></>}
+                </>
+            ))
+        }
+        。
+    </p>) : <></>
+}
