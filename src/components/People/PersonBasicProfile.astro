@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import BelovedBike from "./Profile/BelovedBike.astro";
 import FamousQuotes from "./Profile/FamousQuotes.astro";
 import TeamAndRole from "./Profile/TeamAndRole.astro";
 
@@ -10,7 +11,10 @@ const { personEntry } = Astro.props;
 ---
 
 <div class="pl-2">
-    <TeamAndRole personSlug={personEntry.slug} />
-    <p>{personEntry.data.summary}</p>
+    <section class="flex">
+        <TeamAndRole personSlug={personEntry.slug} />
+        <p>{personEntry.data.summary}</p>
+    </section>
+    <BelovedBike personSlug={personEntry.slug} />
     <FamousQuotes personSlug={personEntry.slug} />
 </div>

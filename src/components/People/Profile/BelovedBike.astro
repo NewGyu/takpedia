@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    personSlug: string;
+}
+
+const { personSlug } = Astro.props;
+
+const bikes = await getCollection(
+    "bikes",
+    ({ data }) => data.owned_by === personSlug
+);
+---
+{
+    bikes.length > 0 ? (
+        <p>
+            愛車は
+            {
+                bikes.map((b, idx) => (
+                    <>
+                        {idx > 0 ? "と" : ""}{" "}
+                        <a href={"/bikes/" + b.slug}>{b.data.name}</a>
+                    </>
+                ))
+            }
+        </p>
+    ) : <></>
+}
