@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Leader from "./Leader.astro";
 
 export interface Props {
     team: CollectionEntry<"teams">;
@@ -14,5 +15,12 @@ const { team } = Astro.props;
             >{team.data.name}</a
         ><ruby class="text-sm">{`(${team.data.kana})`}</ruby>
     </dt>
-    <dd class="pl-2 py-1">{team.data.summary}</dd>
+    <dd class="pl-2 py-1">
+        <Leader
+            leader_slug={team.data.leader.slug}
+            role={team.data.leader.role}
+        />
+        率いる
+        {team.data.summary}
+    </dd>
 </dl>

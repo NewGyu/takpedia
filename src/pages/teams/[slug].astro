@@ -2,6 +2,7 @@
 import Article from "@components/Standard/Article.astro";
 import PageHeader from "@components/Standard/PageHeader.astro";
 import PageTitle from "@components/Standard/PageTitle.astro";
+import Leader from "@components/Team/Leader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Kanban from "../../components/Team/Kanban.astro";
@@ -28,6 +29,11 @@ const { Content } = await teamEntry.render();
                 {data.name}
             </PageTitle>
         </PageHeader>
+        <p class="p-2">
+            <Leader leader_slug={data.leader.slug} role={data.leader.role} />
+            率いる
+            {data.summary}
+        </p>
     </section>
     <section>
         <Article markdown={true}>
