@@ -10,5 +10,18 @@ import AstroPWA from "@vite-pwa/astro";
 // https://astro.build/config
 export default defineConfig({
   site: "https://bukko.me/",
-  integrations: [tailwind(), mdx(), sitemap(), react(), AstroPWA()]
+  integrations: [
+    tailwind(), mdx(), sitemap(), react(),
+    AstroPWA({
+      manifest: {
+        name: "特攻の拓総合サイト拓ペディア",
+        short_name: "Takpedia",
+        icons: [{
+          src: "icon/taku-icon.png",
+          sizes: "256x256",
+          type: "image/png"
+        }]
+      }
+    })
+  ]
 });
