@@ -6,8 +6,6 @@ import SideNavi from "../components/Global/SideNavi.astro";
 import MainArea from "../components/Global/MainArea.astro";
 import Ogp from "../components/Global/Ogp.astro";
 import "../style/global.css";
-import { pwaInfo } from "virtual:pwa-info";
-
 export interface Props {
     title: string;
     summary?: string;
@@ -25,8 +23,6 @@ const pageTitle = `拓ペディア | ${title}`;
         <meta name="generator" content={Astro.generator} />
         <title>{pageTitle}</title>
         <Ogp title={pageTitle} summary={summary} />
-        <script src="/src/pwa.ts"></script>
-        {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
     </head>
     <body class="h-full">
         <div class="flex flex-col min-h-screen max-w-full">
