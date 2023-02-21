@@ -6,7 +6,10 @@ export interface Props {
 }
 
 const { title, summary } = Astro.props;
-const description = `特攻の拓 非公式総合サイト 拓ペディア | ${summary || ""}`;
+const defaultSummary = "特攻の拓を愛する者のファンサイトです。";
+const description = `特攻の拓 非公式総合サイト 拓ペディア(タクペディア) | ${
+    summary || defaultSummary
+}`;
 const imageUrl = (Astro.site?.toString() || "") + OgpImage;
 ---
 

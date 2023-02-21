@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Topic from "./Topic.astro";
+
+interface Props {
+    len: number;
+}
+
+const { len } = Astro.props;
+const topics = await getCollection("topics");
+---
+
+{
+    topics
+        .sort(
+            (a, b) =>
+                b.data.published_at.getTime() - a.data.published_at.getTime()
+        )
+        .slice(0, len)
+        .map((t) => <Topic topic={t} />)
+}
