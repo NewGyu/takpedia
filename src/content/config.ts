@@ -4,6 +4,7 @@ import { FamousQuoteSchema } from "../schemas/famousQuote";
 import { BikeSchema } from "../schemas/bikes";
 import { ListOfTermsSchema } from "../schemas/terms";
 import { OrgSchema } from "../schemas/orgs";
+import { TopicSchema } from "../schemas/topics";
 
 
 export const collections = {
@@ -13,4 +14,5 @@ export const collections = {
     "bikes": BikeSchema,
     "terminologies": ListOfTermsSchema,
     "orgs": OrgSchema,
+    "topics": TopicSchema
 }

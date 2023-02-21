@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    topic: CollectionEntry<"topics">;
+}
+
+const { topic } = Astro.props;
+const { Content } = await topic.render();
+---
+
+<article>
+    <h3>
+        {topic.data.published_at.toLocaleDateString("ja-JP")}<br />
+        {topic.data.title}
+    </h3>
+    <Content />
+</article>
