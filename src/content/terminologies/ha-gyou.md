@@ -13,4 +13,14 @@ items:
         note: カタカナで書かれることもある例
       - sentence: 半チクダボがぁ！！
         note: ダボと組み合わせた高度な使用例
+  - word: パーカー
+    kana: パーカー
+    summary: パトカーのこと。フーディーのことではありません。
+  - word: パラディウス
+    kana: パラディウス
+    summary: 作中に登場するゲームの名前。
+    desc: paradius
+  - word: ファイナルドラゴン
+    kana: ファイナルドラゴン
+    summary: 拓がハマっているゲーム。FFとDQをくっつけたものだと思われる。
 ---
