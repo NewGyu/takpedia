@@ -1,10 +1,12 @@
 ---
+import { getEntryBySlug } from "astro:content";
 import TermExamples, { Example } from "./TermExamples.astro";
 
 interface Term {
     word: string;
     kana: string;
-    desc: string;
+    summary: string;
+    desc?: string;
     examples?: Example[];
 }
 interface Props {
@@ -12,6 +14,14 @@ interface Props {
 }
 
 const { term } = Astro.props;
+const getDescContent = async () => {
+    if (!term.desc) return undefined;
+    const desc = await getEntryBySlug("termdescs", term.desc);
+    if (!desc) return undefined;
+    const { Content } = await desc.render();
+    return Content;
+};
+const DescContent = await getDescContent();
 ---
 
 <div
@@ -20,5 +30,6 @@ const { term } = Astro.props;
     <h3 class="text-lg font-semibold"><a id={term.word}></a>{term.word}</h3>
     <ruby class="text-xs">（{term.kana}）</ruby>
 </div>
-<p>{term.desc}</p>
+<p>{term.summary}</p>
+{ DescContent ? <DescContent /> : <></> }
 <TermExamples examples={term.examples} />

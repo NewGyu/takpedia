@@ -1,4 +1,5 @@
 import { z, defineCollection } from "astro:content";
+import exp from "constants";
 
 const Example = z.object({
     sentence: z.string(),
@@ -7,7 +8,8 @@ const Example = z.object({
 const Term = z.object({
     word: z.string(),
     kana: z.string(),
-    desc: z.string(),
+    summary: z.string(),
+    desc: z.string().optional(),
     examples: z.array(Example).optional()
 });
 
@@ -18,3 +20,5 @@ export const ListOfTermsSchema = defineCollection({
         items: z.array(Term)
     })
 });
+
+export const TermDescSchema = defineCollection({});
