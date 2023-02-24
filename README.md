@@ -8,17 +8,22 @@
 
 ### Prerequisite
 
-当サイトは[Astro](https://astro.build)を用いて開発されており、Node.js v16.xが必要です。
+当サイトは[Astro](https://astro.build)を用いて開発されており、Node.js v16.x以降が必要です。最も簡単な方法はVSCodeと[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)を利用することですが、VSCode以外のエディタ、Dockerを使わずに別の方法でContributeしたい場合はあなたのローカルマシンにNode.jsをインストールしてください。
 
-最も簡単な方法はVSCodeと[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)を利用することです。
+そして初回には下記のコマンドを実行してください。
 
-他のエディタ、Dockerを使いたくない場合にはローカルにNode.jsをインストールしてください。
+```shell
+$ npm install       <--- Astroを含むページビルドに必要なライブラリをインストールします
+$ npm run build     <--- schemaをTypeScriptの型にコンパイルするために必要なようです
+```
 
 ### Run on your local
 
 ```shell
 $ npm run dev
 ```
+
+http://localhost:3000/ で確認できます。
 
 ### Build
 ```shell
@@ -37,20 +42,51 @@ $ npm run build
 
 ```
 .
+├── astro.config.mjs
 ├── public
 ├── src
-│   ├── codes           ...Astro依存しない独立したロジック
-│   ├── components
-│   │   ├── Global      ...グローバルヘッダなど
-│   │   ├── Team        ...族関係のページの部品
-│   │   └── People      ...登場人部関係のページの部品
-│   ├── layouts         ...全体レイアウト
-│   ├── pages
-│   │   ├── teams       ...族関係のページ
-│   │   └── people      ...登場人部関係のページ
+│   ├── components      ...各種ページで使われているUIパーツ定義
+│   ├── content         ...コンテンツの内容を記述するmdx
+│   ├── env.d.ts
+│   ├── layouts         ...全体の枠の定義
+│   ├── pages           ...各種ページ定義（ただし具体的な内容は content）
+│   ├── schemas         ...各種コンテンツのスキーマ定義
 │   └── style
-└── test
+├── tailwind.config.cjs
+└── tsconfig.json
 ```
+### content collection
+Astro 2.0から採用された[Content Collections](https://docs.astro.build/ja/guides/content-collections/)をめちゃめちゃ活用しています。
+
+```
+./src/
+├── content
+│   ├── config.ts           <--content collectionの定義
+│   ├── famousQuotes
+│   ├── orgs
+│   :      :
+│   └── teams               <--各種content(*.mdxファイル)が格納される
+├── pages
+│   ├── orgs
+│   ├── people
+│   ├── quotes
+│   :       :
+│   └── teams
+│         ├── index.astro   <--一覧ページ
+│         └── [slug].astro  <--詳細ページ
+└── schemas
+    ├── famousQuote.ts
+    ├── orgs.ts
+    :      :
+    └── team.ts             <--Zodを使ったスキーマ定義の実体
+```
+
+その結果としてpages以下のページはほとんどの場合、
+* index.astro
+* [slug].astro
+の2つだけで、それらのページがビルド過程にcontent以下の*.mdxファイルを当てはめてページを生成しています。
+
+それによって、ほとんどのケースではJavaScriptやAstroを理解することなく、 **content以下の.mdxファイルにMarkdownを書くだけ** でコンテンツの追加、修正が可能となっています。
 
 ### style
 基本的に[tailwind.css](https://tailwindcss.com/)を利用しています。故に各所のclassを大量に付けていくスタイルです。
