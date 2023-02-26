@@ -12,7 +12,7 @@ export const TeamSchema = defineCollection({
         name: z.string(),
         kana: z.string(),
         summary: z.string(),
-        leader: TeamMember,
+        leader: TeamMember.optional(),
         member: TeamMember.array().optional(),
         kanban: z.string().array().optional()
     })

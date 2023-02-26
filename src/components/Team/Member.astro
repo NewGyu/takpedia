@@ -1,10 +1,10 @@
 ---
-import type { TeamMemberType } from "../../content/schemas/team";
+import type { TeamMemberType } from "../../schemas/team";
 import { getEntryBySlug } from "astro:content";
 
 export interface Props {
-    leader: TeamMemberType;
-    member: TeamMemberType[];
+    leader?: TeamMemberType;
+    member?: TeamMemberType[];
     ob?: TeamMemberType[];
 }
 const { leader, member } = Astro.props;
@@ -15,7 +15,9 @@ async function joinWithPerson(tm: TeamMemberType) {
 }
 
 const allTeamMember = await Promise.all(
-    [leader, ...(member || [])].map((tm) => joinWithPerson(tm))
+    [leader, ...(member || [])]
+        .filter((tm) => tm)
+        .map((tm) => joinWithPerson(tm))
 );
 ---
 
