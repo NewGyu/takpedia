@@ -29,11 +29,15 @@ const { Content } = await teamEntry.render();
                 {data.name}
             </PageTitle>
         </PageHeader>
-        <p class="p-2">
-            <Leader leader_slug={data.leader.slug} role={data.leader.role} />
-            率いる
-            {data.summary}
-        </p>
+        {
+            data.leader ? (
+                <p class="p-2">
+                    
+                    <Leader leader_slug={data.leader.slug} role={data.leader.role} />
+                    率いる
+                    {data.summary}
+                </p>) :<></>
+        }
     </section>
     <section>
         <Article markdown={true}>

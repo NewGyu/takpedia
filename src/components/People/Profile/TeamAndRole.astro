@@ -13,11 +13,11 @@ const teams = (await getCollection("teams"))
         name: t.data.name,
         members: [t.data.leader, ...(t.data.member || [])],
     }))
-    .filter((t) => t.members.find((x) => personSlug === x.slug))
+    .filter((t) => t.members.find((x) => personSlug === x?.slug))
     .map((t) => ({
         teamSlug: t.slug,
         teamName: t.name,
-        role: t.members.find((x) => personSlug === x.slug)?.role,
+        role: t.members.find((x) => personSlug === x?.slug)?.role,
     }));
 ---
 {
