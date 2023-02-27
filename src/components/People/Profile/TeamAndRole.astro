@@ -22,7 +22,7 @@ const teams = (await getCollection("teams"))
 ---
 {
     teams.length > 0 ? (
-    <p>
+    <>
         {
             teams.map((t, idx) => (
                 <>
@@ -33,5 +33,5 @@ const teams = (await getCollection("teams"))
             ))
         }
         。
-    </p>) : <></>
+    </>) : <></>
 }

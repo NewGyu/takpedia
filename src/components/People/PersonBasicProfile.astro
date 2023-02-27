@@ -11,9 +11,9 @@ const { personEntry } = Astro.props;
 ---
 
 <div class="pl-2">
-    <section class="flex">
+    <section>
         <TeamAndRole personSlug={personEntry.slug} />
-        <p>{personEntry.data.summary}</p>
+        <>{personEntry.data.summary}</>
     </section>
     <BelovedBike personSlug={personEntry.slug} />
     <FamousQuotes personSlug={personEntry.slug} />
