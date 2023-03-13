@@ -1,0 +1,14 @@
+{
+  "name": "@newgyu/taku-functions",
+  "version": "1.0.0",
+  "description": "cloudflare functions for takpedia",
+  "private": true,
+  "scripts": {
+    "build": "tsc -P .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230307.0",
+    "typescript": "^4.9.5"
+  }
+}
