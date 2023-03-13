@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run function:build",
+    "function:build": "npm --prefix ./functions run build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest"
