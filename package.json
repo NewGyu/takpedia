@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run function:build",
+    "function:build": "tsc -P ./functions",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest"
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.11.18",
-    "vitest": "^0.28.3"
+    "vitest": "^0.28.3",
+    "@cloudflare/workers-types": "^4.20230307.0"
   }
 }
