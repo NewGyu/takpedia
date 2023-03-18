@@ -1,0 +1,9 @@
+---
+import { Chat } from "@components/Gpt/Chat";
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout title="武丸GPT">
+    <p><a href="/people/takemaru">武丸</a>くんとおしゃべりしよう</p>
+    <Chat client:visible />
+</DefaultLayout>
