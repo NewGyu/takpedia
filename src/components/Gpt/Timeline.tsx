@@ -40,7 +40,7 @@ const RoleIcon = (props: RoleIconProps) => {
     const iconPath = props.role == "user" ? userIcon : assistantIcon;
     return (
         <figure>
-            <img src={iconPath} />
+            <img style={{ minWidth: 64 }} src={iconPath} />
         </figure>
     );
 }

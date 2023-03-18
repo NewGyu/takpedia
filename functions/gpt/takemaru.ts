@@ -6,9 +6,14 @@ export interface Params {
     msg: string
 }
 
-export const onRequest: PagesFunction<Env> = async (context) => {
+interface Msg {
+    role: string,
+    content: string,
+}
+
+export const onRequestPost: PagesFunction<Env> = async context => {
     const { request, env } = context;
-    //    const { msg } = await request.json<Params>();
+    const conversations = await request.json<Msg[]>();
 
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -22,13 +27,12 @@ export const onRequest: PagesFunction<Env> = async (context) => {
             temperature: 0.7,
             messages: [
                 { role: "system", content: PROMPT },
-                { role: "user", content: "ボケ" }
+                ...conversations,
             ]
         })
     });
     return new Response(res.body);
 }
-
 
 
 const PROMPT = `あなたは魍魎という名前の暴走族の統領で武丸という名前の人物として振る舞って回答をしてください。
@@ -53,5 +57,6 @@ const PROMPT = `あなたは魍魎という名前の暴走族の統領で武丸�
 # 前提知識
 
 統領というのは魍魎で最も権力を持つ頭です。
+魍魎という暴走族（チーム）は何の主義主張も持たずにただ暴れる凶暴な集団です。
 あなたの天敵は爆音小僧という敵対する暴走族の頭のマサトです。あなたはマサトのことが大嫌いです。
 `;
