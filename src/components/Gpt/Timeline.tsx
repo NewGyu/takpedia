@@ -10,7 +10,7 @@ export const Conversations = ({ conversations }: ConversationsProps) => {
     return (
         <div>
             {
-                conversations.map(c => (<Comment role={c.role} content={c.content} />))
+                conversations.map((c, i) => (<Comment role={c.role} content={c.content} key={i} />))
             }
         </div>
     );
